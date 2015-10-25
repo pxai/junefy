@@ -5,10 +5,11 @@
 */
 
 
-var Game = function (total, min, max) {
+var Game = function (total, min, max, player) {
         var totalQuestions = total;
 	var topTable = max;
 	var bottomTable = min;
+        var playerName = player;
         var quiz;
 
 //	var questions = generate();
@@ -23,6 +24,11 @@ var Game = function (total, min, max) {
 
         this.isEnded = function () {
             return quiz.isEnded();
-        }
+        };
+        
+        this.getPlayer = function () {
+            return playerName;
+        };
+        
 };
 

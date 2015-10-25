@@ -59,7 +59,7 @@ var Quiz = function (total, min, max) {
 	};
 
 	this.isEnded = function () {
-		return (index == totalQuestions);
+		return ((index+1) == totalQuestions);
 	};
         
 	this.answerCurrent = function (answer) {
