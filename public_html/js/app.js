@@ -3,7 +3,9 @@
  * pello altadill
  */
 
-var game = new Game(10,2,3,'June');
+var min = 2;
+var max = $('#tableNumber').val();
+var game = new Game(10, min,max,'June');
 
 $('#fire').click(function (event) {
    $('#anwser').focus();

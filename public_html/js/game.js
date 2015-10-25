@@ -15,7 +15,7 @@ var Game = function (total, min, max, player) {
 //	var questions = generate();
 	
 	this.start = function () {
-               quiz = new Quiz(totalQuestions, max, min);
+               quiz = new Quiz(totalQuestions, min, max);
 	};
         
         this.getQuiz = function () {
