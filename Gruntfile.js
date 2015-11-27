@@ -6,10 +6,12 @@ module.exports=function(grunt) {
 // Many tasks
 [
  'grunt-contrib-jshint',
-'grunt-contrib-csslint',
+ 'grunt-contrib-csslint',
  'grunt-html',
  'grunt-contrib-clean',
- 'grunt-execute'
+ 'grunt-contrib-concat',
+ 'grunt-execute',
+'grunt-hashres'
 ].forEach(function (g) {
 	grunt.loadNpmTasks(g);
 });
@@ -42,6 +44,15 @@ grunt.initConfig({
                 '!src/css/*.min.css' // Exclude any files ending with `.min.html`
             ]
         },
+  concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: ['src/**/*.js','!src/**/*.min.js'],
+        dest: 'dist/js/app.min.js'
+      }
+    },
     clean : {
     	target1 : {
         	src : [ "src/**/*.*~"]
@@ -50,6 +61,6 @@ grunt.initConfig({
 });
 
 // Default task
-grunt.registerTask('default',['clean','jshint','csslint','htmllint']);
+grunt.registerTask('default',['clean','jshint','csslint','htmllint','concat']);
 
 };
