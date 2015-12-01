@@ -10,7 +10,7 @@ module.exports=function(grunt) {
  'grunt-html',
  'grunt-contrib-clean',
  'grunt-contrib-concat',
- 'grunt-execute',
+ 'grunt-contrib-cssmin',
 'grunt-hashres'
 ].forEach(function (g) {
 	grunt.loadNpmTasks(g);
@@ -57,10 +57,31 @@ grunt.initConfig({
     	target1 : {
         	src : [ "src/**/*.*~"]
     	}
-	}
+	},
+cssmin: {
+  minify: {
+    files: [{
+      expand: true,
+      cwd: 'src/css',
+      src: ['**/*.css', '!**/*.min.css'],
+      dest: 'dist/css',
+      ext: '.min.css'
+    }]
+  },
+  options: {
+    shorthandCompacting: false,
+    roundingPrecision: -1
+  },
+  combine: {
+    files: {
+      'dist/css/style.min.css': ['!dist/css/*.min.css', 'dist/css/*.css']
+    }
+  }
+}
 });
 
 // Default task
-grunt.registerTask('default',['clean','jshint','csslint','htmllint','concat']);
+grunt.registerTask('default',['clean','cssmin','concat']);
+grunt.registerTask('hard',['clean','jshint','csslint','htmllint','concat']);
 
 };
