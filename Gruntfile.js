@@ -13,6 +13,7 @@ module.exports=function(grunt) {
  'grunt-contrib-cssmin',
  'grunt-contrib-htmlmin',
  'grunt-contrib-uglify',
+ 'grunt-processhtml',
  'grunt-hashres'
 ].forEach(function (g) {
 	grunt.loadNpmTasks(g);
@@ -57,7 +58,7 @@ grunt.initConfig({
     },
     clean : {
     	target1 : {
-        	src : [ 'src/**/*.*~', 'dist/*']
+        	src : [ 'src/**/*.*~', 'dist/*', 'stage/*']
     	}
 	},
 cssmin: {
@@ -76,7 +77,7 @@ cssmin: {
   },
   combine: {
     files: {
-      'dist/css/style.min.css': ['!dist/css/*.min.css', 'dist/css/*.css']
+      'dist/css/app.min.css': ['!dist/css/*.min.css', 'dist/css/*.css']
     }
   }
 },
@@ -87,7 +88,7 @@ htmlmin: {
         collapseWhitespace: true
       },
       files: {                                   // Dictionary of files
-        'dist/index.html': 'src/index.html'     // 'destination': 'source'
+        'dist/index.html': 'stage/index.html'     // 'destination': 'source'
       }
   }
  },
@@ -98,11 +99,20 @@ htmlmin: {
 			'dist/js/app.min.js':  ['src/js/app.min.js']
 		}
         }
+ },
+ processhtml: {
+	options: {
+	},
+	dist : {
+		files: {
+		  'stage/index.html': ['src/index.html']
+		}
+	}
  }
 });
 
 // Default task
-grunt.registerTask('default',['clean','cssmin','concat','uglify','htmlmin']);
+grunt.registerTask('default',['clean','cssmin','concat','uglify','processhtml','htmlmin']);
 grunt.registerTask('hard',['clean','jshint','csslint','htmllint','concat']);
 
 };
