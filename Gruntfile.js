@@ -77,7 +77,7 @@ cssmin: {
   },
   combine: {
     files: {
-      'dist/css/app.min.css': ['!dist/css/*.min.css', 'dist/css/*.css']
+      'dist/css/app.min.css': ['src/css/*.min.css', 'dist/css/*.css']
     }
   }
 },
